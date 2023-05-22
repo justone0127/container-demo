@@ -24,6 +24,7 @@ Apache 웹 서버를 RHEL OS와 컨테이너에 각각 구성해보면서 각각
 Red Hat Enterprise Linux 8 운영체제에서 패키지 관리자 도구인 dnf를 통해 설치 가능한 httpd 버전을 확인합니다.
 ```bash
 $ dnf list --showduplicate httpd
+```
 
 
 Red Hat Enterprise Linux 8 운영체제에서 패키지 관리자 도구인 dnf를 통해 httpd 서비스를 설치합니다.
