@@ -18,13 +18,15 @@
 
 Apache 웹 서버를 RHEL OS와 컨테이너에 각각 구성해보면서 각각의 특징 및 차이점을 확인합니다.
 
-
 **1-1) 가상머신 기반 리눅스에 httpd 설치**
 
 Red Hat Enterprise Linux 8 운영체제에서 패키지 관리자 도구인 dnf를 통해 설치 가능한 httpd 버전을 확인합니다.
+
 ```bash
 $ dnf list --showduplicate httpd
+```
 
+![httpd_install_version_check](C:\Works\01_자료\01_OCP\2023_KDN_Account_Day\container-demo-main\httpd_install_version_check.png)
 
 Red Hat Enterprise Linux 8 운영체제에서 패키지 관리자 도구인 dnf를 통해 httpd 서비스를 설치합니다.
 
@@ -77,7 +79,7 @@ $ podman ps
 
 일반적인 가상머신의 OS 환경과 컨테이너 환경에서 웹 서버 구성의 시간 차이는 별로 나지 않았습니다.  
 
-  
+
 <br/>
 
 ### 2. 애플리케이션 배포
@@ -174,21 +176,21 @@ VM 기반 리눅스의 웹 서버에 새로운 애플리케이션을 배포하�
 **3-1) 리눅스에 설치된 httpd 웹 서버 업그레이드**
 
 httpd 버전을 확인합니다.  
-현재 버전은 <span style="color: green">2.4.37-30.module+el8.3.0+7001+0766b9e7</span> 입니다.
+현재 버전은 <span style="color: green">httpd-2.4.37-47.module+el8.6.0+14529+083145da.1</span> 입니다.
 
 ```bash
 $ dnf list --showduplicate httpd
 ```
 
-![](./rhel8_httpd_version_before.png)
+![rhel8_httpd_version_before.png](C:\Works\01_자료\01_OCP\2023_KDN_Account_Day\container-demo-main\rhel8_httpd_version_before.png.png)
 
-더 최신 버전인 <span style="color: yellow">2.4.37-43.module+el8.5.0+14530+6f259f31.3</span> 으로 httpd 웹 서버를 업그레이드합니다.
+더 최신 버전인 <span style="color: green">httpd-2.4.37-56.module+el8.8.0+18758+b3a9c8da.6.x86_64</span> 으로 httpd 웹 서버를 업그레이드합니다.
 
 ```bash
-$ dnf update -y httpd-2.4.37-43.module+el8.5.0+14530+6f259f31.3.x86_64
+$ dnf update -y httpd-2.4.37-56.module+el8.8.0+18758+b3a9c8da.6.x86_64
 ```
 
-httpd 버전이 <span style="color: yellow">2.4.37-43.module+el8.5.0+14530+6f259f31.3</span> 으로 업그레이드된 것을 확인합니다.
+httpd 버전이 <span style="color: red">2.4.37-56.module+el8.8.0+18758+b3a9c8da.6</span> 으로 업그레이드된 것을 확인합니다.
 
 ```bash
 $ dnf list --showduplicate httpd
@@ -210,7 +212,7 @@ $ podman search --list-tags registry.redhat.io/rhel8/httpd-24
 
 ![](./podman_search_tags.png)
 
-기본 베이스가 되는 httpd 컨테이너의 버전 (<span style="color: yellow">1-256</span>)을 확정하고 Containerfile을 수정합니다.
+기본 베이스가 되는 httpd 컨테이너의 버전 (<span style="color: red">1-256</span>)을 확정하고 Containerfile을 수정합니다.
 
 
 ```bash
@@ -257,7 +259,7 @@ $ podman ps
 
 ```bash
 $ dnf list --showduplicate httpd
-$ dnf downgrade -y httpd-2.4.37-30.module+el8.3.0+7001+0766b9e7.x86_64
+$ dnf downgrade -y httpd-2.4.37-47.module+el8.6.0+14529+083145da.1.x86_64
 ```
 버전이 롤백된 것을 확인합니다.
 
