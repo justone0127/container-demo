@@ -21,11 +21,15 @@ Apache 웹 서버를 RHEL OS와 컨테이너에 각각 구성해보면서 각각
 
 **1-1) 가상머신 기반 리눅스에 httpd 설치**
 
+Red Hat Enterprise Linux 8 운영체제에서 패키지 관리자 도구인 dnf를 통해 설치 가능한 httpd 버전을 확인합니다.
+```bash
+$ dnf list --showduplicate httpd
+
 
 Red Hat Enterprise Linux 8 운영체제에서 패키지 관리자 도구인 dnf를 통해 httpd 서비스를 설치합니다.
 
 ```bash
-$ dnf install -y httpd-2.4.37-30.module+el8.3.0+7001+0766b9e7.x86_64
+$ dnf install -y httpd-2.4.37-47.module+el8.6.0+14529+083145da.1.x86_64
 ```
 
 Apache 웹 서버인 httpd 데몬의 서비스 포트를 8080으로 변경합니다.
